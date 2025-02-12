@@ -3,7 +3,6 @@ from epilepsy2bids.annotations import Annotations
 import pandas as pd
 import numpy as np
 import sys
-import matplotlib.pyplot as plt
 
 sys.path.append('../')
 from DSOSD.utils import notch_filter, bandpass_filter, downsample
@@ -52,11 +51,6 @@ def dynasd_detect(eeg):
     for start, end, is_seizing in zip(start_sample_indices, end_sample_indices, dynasd_mask_wins_ff):
         if is_seizing:  # Only mark if the window was classified as seizing
             dynasd_mask[start:end] = True
-            
-    # print(dynasd_mask_wins.sum())
-    # print(dynasd_mask.sum())
-    # plt.plot(dynasd_mask)
-    # plt.savefig('/output/test_mask.png')
 
     hyp = Annotations.loadMask(dynasd_mask,fs)
 
