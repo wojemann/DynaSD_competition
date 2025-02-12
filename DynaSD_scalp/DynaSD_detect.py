@@ -27,7 +27,7 @@ def dynasd_detect(eeg):
                                     rwin_req=14,
                                     ret_smooth_mat=True,
                                     )
-    dynasd_mask_wins = sz_clf.sum(axis=1) > 9
+    dynasd_mask_wins = sz_clf.sum(axis=1) > 8
 
     window_start_times = mdl.get_win_times(signal_ds_df.count().median().astype(int))
     # Convert window start times to sample indices
